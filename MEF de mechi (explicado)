@@ -1,20 +1,20 @@
 #define LED1 3
 #define LED2 8
 #define BUTTON 2
-#define DELAY 40
+#define DELAY 30
 
 typedef enum{
-  BUTTON_UP,
-  BUTTON_FALLING,
-  BUTTON_DOWN,
-  BUTTON_RAISING,
-} debounceState_t;
+  BUTTON_UP, // boton no presionado
+  BUTTON_FALLING, // boton en transicion a presionarse, aun no detecta el estado presionado
+  BUTTON_DOWN, // boton presionado
+  BUTTON_RAISING, // boton en transicion a no presionado
+} debounceState_t; //definimos posibles estados de "BUTTON"
 
-void debounceFSM_init(void);		// debe cargar el estado inicial
-void debounceFSM_update(void);	// debe leer las entradas, resolver la lógica de
-// transición de estados y actualizar las salidas
-void buttonPressed();			// debe invertir el estado del LED1
-void buttonReleased();		// debe invertir el estado del LED2 
+void debounceFSM_init(void);		//definimos estado inicial del boton
+void debounceFSM_update(void);	 //lee en que estado esta el boton
+void buttonPressed();			
+
+void buttonReleased();		
 
 debounceState_t estadoActual;
 unsigned long int TIME;
